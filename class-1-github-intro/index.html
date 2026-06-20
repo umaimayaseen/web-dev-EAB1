@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github-repo</title>
+
+
+
+
+    <script>
+
+        let todoList = [];
+        function startMachine() {
+            let inputField = document.getElementById("task-input");
+            let newTask = inputField.value;
+
+            if (newTask === "") {
+                alert("Pehle kuch likho!");
+                return;
+            }
+
+            todoList.push(newTask);
+            inputField.value = "";
+
+            // Render list again
+            showList();
+        }
+
+        function showList() {
+            let deliveryTray = document.getElementById("list-container");
+            let finalHTML = "";
+
+            for (let i = 0; i < todoList.length; i++) {
+                finalHTML = finalHTML + `
+            <p>
+                ${todoList[i]} 
+                <button onclick="editTask(${i})">Edit</button>
+                <button onclick="deleteTask(${i})" style="background-color: red;">Delete</button>
+            </p>
+        `;
+            }
+        }
+
+        deliveryTray.innerHTML = finalHTML;
+
+        function deleteTask(index) {
+            // Array se us number wale task ko nikal do
+            todoList.splice(index, 1);
+
+            // Screen ko dubara update karo
+            showList();
+        }
+
+        function editTask(index) {
+            // User se naya naam poocho box me
+            let updatedTask = prompt("Change your task:", todoList[index]);
+
+            if (updatedTask !== null && updatedTask !== "") {
+                // Array me purani jagah naya naam daal do
+                todoList[index] = updatedTask;
+
+                // Screen ko dubara update karo
+                showList();
+            }
+        }
+
+
+    </script>
+
+
+
+
+</head>
+
+<body>
+
+
+    <div>
+        <h2>Github Intro </h2>
+
+        <h2>How to use Github?</h2>
+        <p>
+            To use Github, you first need to create an account on Github. Once you have an account, you can create a
+            repository to store your code. You can then push your code to the repository, and it will be stored in the
+            cloud.
+        </p>
+        <li></li>
+
+
+    </div>
+
+
+
+
+</body>
+
+
+
+</html>
