@@ -36,6 +36,7 @@ function deleteTask(index) {
     todoList.splice(index, 1);
     showList()
 
+    
 }
 function editTask(index) {
     let updateTask = prompt("update your task", todoList[index]);
