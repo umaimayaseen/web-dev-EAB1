@@ -22,6 +22,7 @@ function showList() {
         finalHTML = finalHTML + `
         <p>
          ${todoList[i]}
+        <button onclick = "editTask(${i})" >Edit</button>
         <button onclick = "deleteTask(${i})" style= "background-color:red;" >Delete</button>
         </p>
         `
@@ -35,4 +36,11 @@ function deleteTask(index) {
     todoList.splice(index, 1);
     showList()
 
+}
+function editTask(index) {
+    let updateTask = prompt("update your task", todoList[index]);
+    if (updateTask !== null && updateTask !== "") {
+        todoList[index] = updateTask;
+        showList();
+    }
 }
