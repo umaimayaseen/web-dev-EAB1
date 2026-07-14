@@ -26,24 +26,22 @@
 // heading.style.padding = "10px";
 
 // let image = document.getElementById("main-image");
-// image.src = "dog.png";
+// // image.src = "dua.png";
 
-let counterTextNode = document.getElementById("counter-display"); 
+let counterTextNode = document.getElementById("counter-display");
 let buttonNode = document.getElementById("my-btn");
 
 let count = 0;
 
-buttonNode.addEventListener("click", function() {
-    
+buttonNode.addEventListener("click", function () {
+
     count = count + 1;
     counterTextNode.innerText = count;
 
-    if(count === 6 || count === 12 || count === 14) {
-         counterTextNode.style.color = "red";
+    if (count) {
+        counterTextNode.style.color = "red";
         counterTextNode.innerText = count + " - these are special numbers!";
     }
-    else {
-         counterTextNode.style.color = "black";
-    }
-  
+   
+
 });
