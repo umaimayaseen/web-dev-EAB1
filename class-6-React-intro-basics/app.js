@@ -33,5 +33,5 @@
 // Yeh programmers ki Google Play Store ya App Store hai. Puri dunya ke developers ne code ke chote chote blocks (packages) bana kar NPM par rakh diye hain.
 
 
-// npm create vite@latest my-first-app -- --template react  (for macbook)
+// npm create vite@latest my-first-app -- --template react  
 // 
