@@ -1,8 +1,20 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+import Header from './components/Header'
+import Footer from './components/Footer';
 
-function App(){
-  const [todoList, setTodoList] = useState([]);
 
-  
+function App() {
 
+  return (
+    <>
+      <Header />
+      <Footer />
+
+
+    </>
+  )
 }
+export default App;
+
+
+
