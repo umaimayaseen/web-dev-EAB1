@@ -18,7 +18,7 @@
 // What is NPM? Node Package Manager.
 
 
-
+// npm create vite@latest my-first-app -- --template react  
 // JavaScript pehle sirf aik hi jagah chal sakti thi—browser (Chrome/Safari) ke andar. Node.js 
 // aik aisi machine (runtime environment) hai jo JavaScript ko browser se baahar nikal kar aapke computer ke computer/operating system par directly chalati hai.
 
@@ -33,5 +33,5 @@
 // Yeh programmers ki Google Play Store ya App Store hai. Puri dunya ke developers ne code ke chote chote blocks (packages) bana kar NPM par rakh diye hain.
 
 
-// npm create vite@latest my-first-app -- --template react  
+// 
 // 
