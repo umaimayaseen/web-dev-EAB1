@@ -4,14 +4,26 @@ import { myDatabase } from '../supabase';
 
 function TaskInput({refreshList}) {
    const [userText, setUserText] = useState('');
+
+
    
     async function saveToCloud() {
+        
+        const cleanText = userText.trim();
+        if (cleanText === '') {
+            alert('Please enter a task before saving.');
+            return;
+        }
+
         await myDatabase 
         .from('todos')
-        .insert([userText])
-        
+        .insert([{ title: cleanText}])
+
+        setUserText('   ');
+        refreshList();
+       
+           
     }
-   
 
     return (
         <div className="input-box-wrapper">

@@ -8,7 +8,7 @@ function Header({ changePage }) {
                 <button onClick={() => changePage('home')} > Home</button>
                 <button onClick={() => changePage('about')}>About</button>
 
-<button onClick={() => changePage( 'profile')}> profile</button>
+               <button onClick={() => changePage( 'profile')}> profile</button>
                 
 
             </nav>
