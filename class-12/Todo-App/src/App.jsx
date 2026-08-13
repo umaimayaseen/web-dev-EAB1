@@ -4,17 +4,47 @@ import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Task from './components/Task';
+import Auth from './components/Auth';
 import { myDatabase } from './supabase';
 
 
 function App() {
 
     const [tasks, setTasks] = useState([]); 
+    const [currentUser, setCurrentUser] = useState(null);
+
+
+    useEffect(() => {
+        myDatabase.auth.getSession().then(({data}) => {
+            setCurrentUser(data.session);
+        });
+   
+        const {data:checkUser} = myDatabase.auth.onAuthStateChange((_event, session) => {
+            setCurrentUser(session);
+        });
+
+        return () => checkUser.subscription.unsubscribe();
+    }, [])
+
+
+
+ // {data:{session : userEmail:"",userPassword"", null },error:{.....}
+
+
+
+
+
 
     async function loadFromCloud() {
+
+        if (!currentUser) {
+            return;
+        }
+
         const response = await myDatabase
             .from('todos')
-            .select('*');
+            .select('*')
+            .eq('user_id', currentUser.user.id);
 
         if (response.data) {
             setTasks(response.data);
@@ -25,11 +55,12 @@ function App() {
         const response = await myDatabase
         .from('todos')
         .delete()
-        .eq ('id', id);
+        .eq ('id', id   );
         loadFromCloud();
     } 
     async function updateTask(id) {
         const newText = prompt('plz updated your task ');
+        
         if(!newText || newText.trim() === '') {
             alert('plz enter your task ');
             return;
@@ -41,17 +72,37 @@ function App() {
         loadFromCloud();
     }
 
+    async function handleLogout() {
+        await myDatabase.auth.signOut();
+    }
+
       useEffect(() => {
-            loadFromCloud();
-        }, []);
+            if (currentUser) {
+                loadFromCloud();
+            }
+
+        }, [currentUser]);
 
     return (
+
+
         <div className="app-wrapper">
             <Header />
+
+            {!currentUser ? (
+                <Auth />
+            ) : (   
             
             <main className='main-container'>
 
-                 <Task refreshList={loadFromCloud} />
+                <div className='user-bar'>
+                    <span className='user-email'>Welcome girlyyyy: {currentUser.user.email}</span>
+                    <button onClick={handleLogout} className='logout-btn'>Logout</button>
+                </div>
+
+                 <Task refreshList={loadFromCloud} userId={currentUser.user.id} />
+
+
 
                 <h2>tasks:</h2>
                    <ul className='todo-list-container'>
@@ -66,7 +117,9 @@ function App() {
                         ))}
 
                    </ul>
-            </main>
+            </main>) }
+            
+         
 
       
             <Footer />

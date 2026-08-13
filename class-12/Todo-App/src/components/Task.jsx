@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { myDatabase } from '../supabase';
 
-function TaskInput({refreshList}) {
+function TaskInput({refreshList ,userId}) {
    const [userText, setUserText] = useState('');
 
 
@@ -17,9 +17,9 @@ function TaskInput({refreshList}) {
 
         await myDatabase 
         .from('todos')
-        .insert([{ title: cleanText}])
+        .insert([{ title: cleanText , user_id: userId }]);
 
-        setUserText('   ');
+        setUserText('');
         refreshList();
        
            
