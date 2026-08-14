@@ -8,7 +8,7 @@ function Auth() {
 
     async function handleSubmit(event) {
         event.preventDefault();
-        if(!email || !password) {
+        if (!email || !password) {
             alert('Please enter both email and password.');
             return;
         }
@@ -29,12 +29,12 @@ function Auth() {
                 password: password
             });
             if (error) {
-                alert("Error logging in: " + error.message);
+                alert("Error logging in: , please create account if you haven’t Signed up before. " + error.message);
             }
 
 
         }
- 
+
 
     }
 
@@ -43,9 +43,9 @@ function Auth() {
 
             <h2>{isSignUp ? "Create new account" : "Welcome Back"}  </h2>
 
-            <form onSubmit={handleSubmit}className="auth-form">
-                <input type="email" placeholder="Email" onChange={(event) => setEmail(event.target.value)} value={email} />
-                <input type="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)} value={password} />
+            <form onSubmit={handleSubmit} className="auth-form">
+                <input type="email" placeholder="Email" onChange={(event) => setEmail(event.target.value)} value={email} className="task-input" />
+                <input type="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)} value={password} className="task-input" />
                 <button type="submit" className="save-btn auth-submit-btn">
                     {isSignUp ? 'Sign Up' : 'Log In'}
                 </button>
