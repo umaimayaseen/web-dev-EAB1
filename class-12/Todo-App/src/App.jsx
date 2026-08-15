@@ -27,12 +27,10 @@ function App() {
     }, [])
 
 
+//   { data: {...}, error: null }.
+// { error } likhne se hum Supabase ko bolte hain: "Bade box(database se response) mein se mujhe sirf error wala  packet nikal kar do, taake main check kar sakoon koi masla toh nahi hua
 
- // {data:{session : userEmail:"",userPassword"", null },error:{.....}
-
-
-
-
+ // {data:{session : userEmail: "..", userPassword: ".." },error: null}
 
 
     async function loadFromCloud() {
@@ -55,7 +53,7 @@ function App() {
         const response = await myDatabase
         .from('todos')
         .delete()
-        .eq ('id', id   );
+        .eq ('id', id );
         loadFromCloud();
     } 
     async function updateTask(id) {

@@ -29,7 +29,7 @@ function Auth() {
                 password: password
             });
             if (error) {
-                alert("Error logging in: , please create account if you haven’t Signed up before. " + error.message);
+                alert("Error logging in: please create account if you haven’t Signed up before. " + error.message);
             }
 
 
@@ -37,6 +37,7 @@ function Auth() {
 
 
     }
+
 
     return (
         <div className="auth-card">

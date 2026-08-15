@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = 'https://bzvpobditufuyuougpgh.supabase.co';
-const myApiKey = 'sb_publishable_j4FtUXc19AGEcolvl7iL8A_SCWBX1Gx';
+const supasbaseUrl =  import.meta.env.SUPABASE_URL;
+const myApiKey = import.meta.env.SUPABASE_APIKEY
 
 export const myDatabase = createClient(supabaseUrl, myApiKey);
