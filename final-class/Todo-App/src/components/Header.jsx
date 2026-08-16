@@ -1,53 +1,45 @@
 import React from 'react';
 
-function Header({ currentTab, setCurrentTab, user, onLogout, cartCount }) {
+function Header({ page, setPage, user, onLogout, cartCount }) {
   return (
     <header className="site-header">
       <div className="header-inner">
-        <div className="brand-logo" onClick={() => setCurrentTab('home')}>
-          🛍️ <span>ModernShop</span>
-        </div>
+        <h2 className="brand-logo" onClick={() => setPage('home')}>
+          🛍️ MartManager
+        </h2>
 
         <nav className="nav-links">
           <button 
-            className={`nav-btn ${currentTab === 'home' ? 'active' : ''}`}
-            onClick={() => setCurrentTab('home')}
+            className={`nav-btn ${page === 'home' ? 'active' : ''}`} 
+            onClick={() => setPage('home')}
           >
             Home
           </button>
           
-          {/* Dedicated Products Tab */}
           <button 
-            className={`nav-btn ${currentTab === 'products' ? 'active' : ''}`}
-            onClick={() => setCurrentTab('products')}
+            className={`nav-btn ${page === 'admin' ? 'active' : ''}`} 
+            onClick={() => setPage('admin')}
           >
-            Products
+            {user ? '➕ Add Product' : '🔐 Admin'}
           </button>
 
           <button 
-            className={`nav-btn ${currentTab === 'about' ? 'active' : ''}`}
-            onClick={() => setCurrentTab('about')}
-          >
-            About Us
-          </button>
-
-          <button 
-            className={`nav-btn cart-nav-btn ${currentTab === 'cart' ? 'active' : ''}`}
-            onClick={() => setCurrentTab('cart')}
+            className={`nav-btn ${page === 'cart' ? 'active' : ''}`} 
+            onClick={() => setPage('cart')}
           >
             🛒 Cart ({cartCount})
           </button>
         </nav>
 
-        <div className="header-auth">
+        <div>
           {user ? (
             <div className="user-profile">
               <span className="user-email">{user.email}</span>
               <button onClick={onLogout} className="logout-btn">Logout</button>
             </div>
           ) : (
-            <button onClick={() => setCurrentTab('auth')} className="login-nav-btn">
-              Login
+            <button onClick={() => setPage('admin')} className="admin-login-btn">
+              Login as Admin
             </button>
           )}
         </div>
